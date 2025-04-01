@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import logo from '../Assets/logo-new.png';
 import cart from '../Assets/cart_icon.png';
 import { useSelector } from 'react-redux';
+import{Link} from 'react-router-dom';
 
 const Navbar = () => {
    const cartItems = useSelector((state) => state.cart);
@@ -10,13 +11,14 @@ const Navbar = () => {
    const listRef = useRef(null);
    const iconRef = useRef(null)
 
+
    useEffect(() => {
       const handleScroll = () => {
          if (window.scrollY > 40) {
             navRef.current.style.backgroundColor = 'rgba(0,0,0,0.8)';
             navRef.current.style.height = '80px';
             logoRef.current.style.display = 'none';
-            listRef.current.style.transform = 'translateY(-50px)'
+            listRef.current.style.transform = 'translateY(-70px)'
             listRef.current.style.color = "#fff";
             iconRef.current.style.display ="none"
          } else {
@@ -57,7 +59,7 @@ const Navbar = () => {
                            <li>BLOG</li>
                            <li>THEME FAQS</li>
                            <li>BRANDS</li>
-                           <li className='d-flex'>CART
+                           <li className='d-flex'> <Link to={'/cart'}>CART</Link>
                               <span className='carts'>{cartItems.length}</span>
                               <img src={cart} alt='cart' ref={iconRef} />
                            </li>
